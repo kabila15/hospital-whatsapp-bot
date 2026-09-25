@@ -511,8 +511,9 @@ app.post('/trigger-emergency-reschedule', async (req, res) => {
         return res.status(500).json({ status: 'error', message: err.message });
     }
 });
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Express server running on port ${PORT} to accept PHP notifications.`);
-    console.log(`QR Web Portal available at http://localhost:${PORT}/qr or http://${localIp}:${PORT}/qr`);
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Express server running on port ${PORT}`);
+    console.log(`QR Web Portal available at /qr`);
 });
