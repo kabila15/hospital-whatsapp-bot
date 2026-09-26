@@ -190,8 +190,11 @@ http://${localDomain}/q.php`;
     await safeSendMessage(targetJid, registeredMsg, { linkPreview: true });
 }
 // --- Bot Initialization ---
+// --- Bot Initialization ---
 const client = new Client({
-    authStrategy: new LocalAuth(),
+    authStrategy: new LocalAuth({
+        dataPath: '/tmp/webjs_auth'
+    }),
 
     puppeteer: {
         executablePath:
@@ -199,19 +202,19 @@ const client = new Client({
 
         headless: true,
 
-      args: [
-    '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
-    '--disable-gpu',
-    '--disable-extensions',
-    '--disable-background-networking',
-    '--disable-software-rasterizer',
-    '--disable-features=Translate,BackForwardCache',
-    '--disable-sync',
-    '--no-first-run',
-    '--no-default-browser-check'
-]
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-extensions',
+            '--disable-background-networking',
+            '--disable-software-rasterizer',
+            '--disable-features=Translate,BackForwardCache',
+            '--disable-sync',
+            '--no-first-run',
+            '--no-default-browser-check'
+        ]
     }
 });
 async function safeSendMessage(to, content, options = {}, retries = 3) {
