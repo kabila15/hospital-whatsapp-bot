@@ -7,7 +7,8 @@ COPY package*.json ./
 RUN npm install
 
 # Install Chromium
-RUN apt-get update && apt-get install -y chromium \
+RUN apt-get update \
+    && apt-get install -y chromium \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . .
